@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Jogada de Ouro - Conectando</title>
+  <meta name="theme-color" content="#030806" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #030806;
+      background-image: 
+        linear-gradient(180deg, rgba(2, 6, 4, 0.65) 0%, rgba(2, 6, 4, 0.18) 32%, rgba(2, 6, 4, 0.42) 65%, rgba(1, 4, 2, 0.95) 100%),
+        url('bg-futebol.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      color: #ffffff;
+      padding: 24px 20px 18px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Bloco Central: Logo + Card de Redirecionamento */
+    .center-content {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 440px;
+      gap: 22px;
+      z-index: 10;
+      padding: 10px 0;
+    }
+
+    /* Logo Oficial Jogada de Ouro */
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      user-select: none;
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      object-fit: contain;
+      filter: 
+        drop-shadow(0 14px 28px rgba(0, 0, 0, 0.95))
+        drop-shadow(0 0 24px rgba(245, 158, 11, 0.35));
+      transition: transform 0.3s ease;
+    }
+
+    /* Card de Redirecionamento Automático */
+    .redirect-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      width: 100%;
+      max-width: 350px;
+      background: rgba(3, 10, 6, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 22px 18px;
+      border-radius: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Spinner Animado */
+    .spinner-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3.5px solid rgba(34, 197, 94, 0.2);
+      border-top-color: #22c55e;
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .redirect-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .redirect-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .redirect-subtitle {
+      font-size: 12px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .countdown-val {
+      color: #22c55e;
+      font-weight: 900;
+    }
+
+    /* Barra de Progresso de 3 Segundos */
+    .progress-bar-wrap {
+      width: 100%;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 2px 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #10b981);
+      border-radius: 999px;
+      animation: fillProgress 3s linear forwards;
+    }
+
+    @keyframes fillProgress {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* Botão Fale com Atendente */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 50px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #02a366 0%, #008753 100%);
+      border: 1.5px solid #1dd588;
+      box-shadow: 
+        0 0 24px rgba(2, 163, 102, 0.45),
+        0 8px 18px rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-cta:hover {
+      background: linear-gradient(180deg, #05b874 0%, #00995e 100%);
+      box-shadow: 
+        0 0 32px rgba(2, 163, 102, 0.7),
+        0 10px 22px rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-cta:active {
+      transform: scale(0.97);
+    }
+
+    .wpp-icon {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .arrow-icon {
+      width: 16px;
+      height: 16px;
+      stroke: #ffffff;
+      stroke-width: 2.6;
+      fill: none;
+      transition: transform 0.2s ease;
+    }
+
+    .manual-note {
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 16px 16px 16px;
+      }
+      .center-content {
+        gap: 18px;
+      }
+      .brand-logo-img {
+        max-width: 240px;
+      }
+      .redirect-card {
+        max-width: 320px;
+        padding: 20px 16px;
+        gap: 12px;
+      }
+      .btn-cta {
+        height: 48px;
+        font-size: 13px;
+      }
+    }
+
+    /* Rodapé */
+    footer {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #8b9bb4;
+      line-height: 1.5;
+      padding-top: 16px;
+      z-index: 10;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .footer-links a {
+      color: #8b9bb4;
+      text-decoration: underline;
+    }
+
+    .footer-copyright {
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .footer-disclaimer {
+      font-size: 9px;
+      color: #475569;
+      max-width: 420px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTEÚDO CENTRAL: Logo Oficial + Redirecionamento -->
+  <div class="center-content">
+    
+    <div class="brand-logo-wrap">
+      <img src="logo.png" alt="Jogada de Ouro" class="brand-logo-img" />
+    </div>
+
+    <div class="redirect-card">
+      <div class="spinner-wrap">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="redirect-text-wrap">
+        <div class="redirect-title">Você está sendo redirecionado...</div>
+        <div class="redirect-subtitle">
+          Abrindo o WhatsApp em <span id="countdown" class="countdown-val">3</span>s
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill"></div>
+      </div>
+
+      <a id="btn-whatsapp" href="#" class="btn-cta">
+        <svg class="wpp-icon" viewBox="0 0 24 24">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.05 20.16C10.64 20.16 9.26 19.78 8.04 19.06L7.76 18.89L4.63 19.71L5.47 16.66L5.28 16.36C4.48 15.09 4.06 13.52 4.06 11.91C4.06 7.37 7.76 3.67 12.05 3.67ZM8.97 7.36C8.82 7.36 8.58 7.42 8.37 7.65C8.16 7.87 7.57 8.43 7.57 9.56C7.57 10.69 8.39 11.78 8.51 11.93C8.63 12.09 10.13 14.39 12.42 15.38C13.06 15.65 13.56 15.82 13.95 15.94C14.6 16.15 15.19 16.12 15.66 16.05C16.18 15.97 17.26 15.39 17.49 14.75C17.72 14.11 17.72 13.56 17.65 13.44C17.58 13.33 17.4 13.26 17.13 13.13C16.86 13 15.53 12.35 15.28 12.26C15.04 12.17 14.86 12.13 14.68 12.4C14.5 12.67 13.99 13.26 13.84 13.44C13.68 13.62 13.53 13.64 13.26 13.51C12.99 13.38 12.12 13.09 11.09 12.17C10.28 11.45 9.74 10.57 9.58 10.3C9.43 10.03 9.56 9.88 9.7 9.75C9.82 9.63 9.97 9.43 10.11 9.27C10.25 9.11 10.3 8.99 10.39 8.81C10.48 8.63 10.43 8.47 10.37 8.35C10.31 8.23 9.77 6.9 9.55 6.36C9.33 5.84 9.12 5.91 8.97 5.91C8.82 5.91 8.64 5.91 8.46 5.91C8.28 5.91 8.04 5.98 7.86 6.18C7.68 6.38 7.17 6.85 7.17 7.82C7.17 8.79 7.89 9.72 8 9.87C8.11 10.01 9.4 11.99 11.37 12.84C11.92 13.08 12.35 13.22 12.68 13.33C13.23 13.51 13.73 13.48 14.13 13.42C14.57 13.35 15.5 12.85 15.69 12.3C15.89 11.75 15.89 11.28 15.83 11.18C15.77 11.08 15.62 11.02 15.39 10.91C15.16 10.8 14.02 10.24 13.81 10.16C13.6 10.08 13.45 10.05 13.3 10.28C13.15 10.51 12.71 11.02 12.58 11.18C12.45 11.33 12.32 11.35 12.09 11.24C11.86 11.13 11.12 10.88 10.24 10.1C9.55 9.48 9.09 8.73 8.95 8.49C8.82 8.26 8.93 8.13 9.05 8.02C9.15 7.92 9.28 7.75 9.4 7.61C9.52 7.47 9.56 7.37 9.64 7.21C9.72 7.06 9.68 6.92 9.62 6.82C9.57 6.72 9.12 5.58 8.97 5.22L8.97 7.36Z" />
+        </svg>
+        <span>Fale com Atendente</span>
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+
+      <div class="manual-note">Clique acima se não redirecionar automaticamente</div>
+    </div>
+
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Termos de Uso</a>
+      <span>•</span>
+      <a href="#">Política de Privacidade</a>
+    </div>
+
+    <div class="footer-copyright">
+      © <span id="year">2026</span> • Todos os direitos reservados.
+    </div>
+
+    <div class="footer-disclaimer">
+      Este site não é afiliado ao Facebook ou a qualquer entidade da Meta Platforms, Inc.
+    </div>
+  </footer>
+
+  <script>
+    // 1. Identifica a opção escolhida no Quiz anterior
+    const urlParams = new URLSearchParams(window.location.search);
+    const perfil = urlParams.get('perfil') || '';
+
+    let mensagem = "Olá, quero montar minha propria banca.";
+    if (perfil === 'cambista') {
+      mensagem = "Olá, sou cambista e quero montar minha própria banca.";
+    } else if (perfil === 'gerente') {
+      mensagem = "Olá, sou gerente e quero montar minha própria banca.";
+    } else if (perfil === 'iniciante') {
+      mensagem = "Olá, nunca trabalhei, mas agora quero ser dono do meu próprio sistema.";
+    }
+
+    const SEU_LINK_DO_WHATSAPP = "https://wa.me/5574999899211?text=" + encodeURIComponent(mensagem);
+
+    const btn = document.getElementById('btn-whatsapp');
+    if (btn) {
+      btn.href = SEU_LINK_DO_WHATSAPP;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Temporizador de 3 segundos com redirecionamento
+    let segundos = 3;
+    const elCountdown = document.getElementById('countdown');
+
+    const timer = setInterval(function() {
+      segundos--;
+      if (elCountdown) elCountdown.textContent = Math.max(0, segundos);
+      if (segundos <= 0) {
+        clearInterval(timer);
+        window.location.href = SEU_LINK_DO_WHATSAPP;
+      }
+    }, 1000);
+
+    setTimeout(function() {
+      window.location.href = SEU_LINK_DO_WHATSAPP;
+    }, 3000);
+  </script>
+</body>
+</html>

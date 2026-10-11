@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Jogada de Ouro</title>
+  <title>Jogada de Ouro - Seleção de Perfil</title>
+  <meta name="description" content="Selecione o seu perfil para atendimento personalizado." />
   <meta name="theme-color" content="#030806" />
-
-  <!-- Redirecionamento Automático de Fallback em 3 segundos -->
-  <meta http-equiv="refresh" content="3;url=https://wa.me/5574999899211?text=Ol%C3%A1%2C%20quero%20montar%20minha%20propria%20banca." />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     * {
@@ -36,7 +34,7 @@
       justify-content: space-between;
       align-items: center;
       background-color: #030806;
-      /* Imagem de futebol vibrante e cinematográfica adaptada para mobile e desktop */
+      /* Imagem de futebol idêntica e adaptada para mobile e desktop */
       background-image: 
         linear-gradient(180deg, rgba(2, 6, 4, 0.65) 0%, rgba(2, 6, 4, 0.18) 32%, rgba(2, 6, 4, 0.42) 65%, rgba(1, 4, 2, 0.95) 100%),
         url('bg-futebol.jpg');
@@ -49,7 +47,7 @@
       position: relative;
     }
 
-    /* Bloco Central: Logo + Card de Redirecionamento */
+    /* Bloco Central: Logo + Quiz */
     .center-content {
       margin: auto 0;
       display: flex;
@@ -58,7 +56,7 @@
       justify-content: center;
       width: 100%;
       max-width: 440px;
-      gap: 22px;
+      gap: 20px;
       z-index: 10;
       padding: 10px 0;
     }
@@ -74,7 +72,7 @@
 
     .brand-logo-img {
       width: 100%;
-      max-width: 320px;
+      max-width: 300px;
       height: auto;
       object-fit: contain;
       filter: 
@@ -83,175 +81,127 @@
       transition: transform 0.3s ease;
     }
 
-    .brand-logo-img:hover {
-      transform: scale(1.02);
-    }
-
-    /* Card de Redirecionamento Automático */
-    .redirect-card {
+    /* Card do Quiz */
+    .quiz-card {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 14px;
       width: 100%;
-      max-width: 350px;
-      background: rgba(3, 10, 6, 0.72);
+      max-width: 400px;
+      background: rgba(3, 10, 6, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.14);
       padding: 22px 18px;
-      border-radius: 24px;
+      border-radius: 26px;
       backdrop-filter: blur(14px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      gap: 16px;
+      text-align: center;
     }
 
-    /* Spinner Animado */
-    .spinner-wrap {
-      display: flex;
+    .quiz-tag {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      margin-top: 2px;
+      gap: 6px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #4ade80;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 999px;
     }
 
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3.5px solid rgba(34, 197, 94, 0.2);
-      border-top-color: #22c55e;
-      border-radius: 50%;
-      animation: spin 0.85s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .redirect-text-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .redirect-title {
-      font-size: 16px;
+    .quiz-title {
+      font-size: 19px;
       font-weight: 900;
       color: #ffffff;
+      line-height: 1.25;
       letter-spacing: -0.01em;
     }
 
-    .redirect-subtitle {
-      font-size: 12px;
-      font-weight: 600;
-      color: #cbd5e1;
-    }
-
-    .countdown-val {
-      color: #22c55e;
-      font-weight: 900;
-    }
-
-    /* Barra de Progresso de 3 Segundos */
-    .progress-bar-wrap {
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
       width: 100%;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 2px 0;
     }
 
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #22c55e, #10b981);
-      border-radius: 999px;
-      animation: fillProgress 3s linear forwards;
-    }
-
-    @keyframes fillProgress {
-      from { width: 0%; }
-      to { width: 100%; }
-    }
-
-    /* Botão Fale com Atendente (Permite clique imediato) */
-    .btn-cta {
-      display: inline-flex;
+    /* Botões de Resposta do Quiz */
+    .quiz-btn {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      justify-content: space-between;
       width: 100%;
-      height: 50px;
-      border-radius: 9999px;
-      background: linear-gradient(180deg, #02a366 0%, #008753 100%);
-      border: 1.5px solid #1dd588;
-      box-shadow: 
-        0 0 24px rgba(2, 163, 102, 0.45),
-        0 8px 18px rgba(0, 0, 0, 0.5);
+      min-height: 56px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(6, 18, 12, 0.95) 100%);
+      border: 1.5px solid rgba(34, 197, 94, 0.3);
       color: #ffffff;
       font-size: 14px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-weight: 800;
+      text-align: left;
       text-decoration: none;
-      transition: all 0.25s ease;
+      line-height: 1.3;
+      transition: all 0.22s ease;
       cursor: pointer;
+      position: relative;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
 
-    .btn-cta:hover {
-      background: linear-gradient(180deg, #05b874 0%, #00995e 100%);
-      box-shadow: 
-        0 0 32px rgba(2, 163, 102, 0.7),
-        0 10px 22px rgba(0, 0, 0, 0.6);
-      transform: translateY(-1px);
+    .quiz-btn:hover {
+      background: linear-gradient(180deg, #02a366 0%, #008753 100%);
+      border-color: #1dd588;
+      box-shadow: 0 0 24px rgba(2, 163, 102, 0.5), 0 6px 18px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
     }
 
-    .btn-cta:active {
+    .quiz-btn:active {
       transform: scale(0.97);
     }
 
-    .wpp-icon {
-      width: 20px;
-      height: 20px;
-      fill: #ffffff;
-      flex-shrink: 0;
+    .quiz-btn-text {
+      flex: 1;
+      padding-right: 10px;
     }
 
-    .arrow-icon {
-      width: 16px;
-      height: 16px;
-      stroke: #ffffff;
-      stroke-width: 2.6;
+    .quiz-btn-arrow {
+      width: 18px;
+      height: 18px;
+      stroke: #22c55e;
+      stroke-width: 2.5;
       fill: none;
-      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
     }
 
-    .btn-cta:hover .arrow-icon {
-      transform: translateX(3px);
-    }
-
-    .manual-note {
-      font-size: 10px;
-      color: #64748b;
-      font-weight: 500;
+    .quiz-btn:hover .quiz-btn-arrow {
+      stroke: #ffffff;
+      transform: translateX(4px);
     }
 
     @media (max-width: 480px) {
       body {
         padding: 20px 16px 16px 16px;
-        background-position: center top;
       }
       .center-content {
-        gap: 18px;
+        gap: 16px;
       }
       .brand-logo-img {
         max-width: 240px;
       }
-      .redirect-card {
-        max-width: 320px;
-        padding: 20px 16px;
-        gap: 12px;
+      .quiz-card {
+        padding: 18px 14px;
+        gap: 14px;
       }
-      .btn-cta {
-        height: 48px;
+      .quiz-title {
+        font-size: 17px;
+      }
+      .quiz-btn {
+        min-height: 52px;
+        padding: 12px 14px;
         font-size: 13px;
       }
     }
@@ -282,11 +232,6 @@
     .footer-links a {
       color: #8b9bb4;
       text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover {
-      color: #ffffff;
     }
 
     .footer-copyright {
@@ -299,46 +244,11 @@
       color: #475569;
       max-width: 420px;
     }
-
-    /* Modal simples para Termos / Privacidade */
-    .legal-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .legal-modal-content {
-      background: #0b130e;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 460px;
-      color: #cbd5e1;
-      font-size: 12px;
-      line-height: 1.6;
-      text-align: left;
-    }
-
-    .legal-modal-close {
-      margin-top: 16px;
-      padding: 8px 16px;
-      background: #02a366;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
-  <!-- CONTEÚDO CENTRAL: Logo Oficial + Redirecionamento Automático -->
+  <!-- CONTEÚDO CENTRAL: Logo + Quiz Seguro -->
   <div class="center-content">
     
     <!-- Logo Oficial Jogada de Ouro -->
@@ -346,49 +256,53 @@
       <img src="logo.png" alt="Jogada de Ouro" class="brand-logo-img" />
     </div>
 
-    <!-- Card de Redirecionamento Automático -->
-    <div class="redirect-card">
-      
-      <!-- Spinner -->
-      <div class="spinner-wrap">
-        <div class="spinner"></div>
+    <!-- Card de Quiz / Seleção de Perfil -->
+    <div class="quiz-card">
+      <div class="quiz-tag">
+        ⚽ Seleção de Perfil
       </div>
 
-      <!-- Textos -->
-      <div class="redirect-text-wrap">
-        <div class="redirect-title">Você está sendo redirecionado...</div>
-        <div class="redirect-subtitle">
-          Abrindo o WhatsApp em <span id="countdown" class="countdown-val">3</span>s
-        </div>
+      <h1 class="quiz-title">
+        Qual é o seu objetivo hoje?
+      </h1>
+
+      <div class="quiz-options">
+        
+        <!-- Opção 1: Cambista -->
+        <a href="redirecionar.html?perfil=cambista" class="quiz-btn">
+          <span class="quiz-btn-text">Sou cambista e quero montar minha própria banca</span>
+          <svg class="quiz-btn-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+
+        <!-- Opção 2: Gerente -->
+        <a href="redirecionar.html?perfil=gerente" class="quiz-btn">
+          <span class="quiz-btn-text">Sou gerente e quero montar minha própria banca</span>
+          <svg class="quiz-btn-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+
+        <!-- Opção 3: Iniciante / Dono -->
+        <a href="redirecionar.html?perfil=iniciante" class="quiz-btn">
+          <span class="quiz-btn-text">Nunca trabalhei, mas agora quero ser dono do meu próprio sistema</span>
+          <svg class="quiz-btn-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+
       </div>
-
-      <!-- Barra de Progresso de 3 Segundos -->
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-fill"></div>
-      </div>
-
-      <!-- Botão Direto (Caso queira clicar na hora ou se o navegador demorar) -->
-      <a id="btn-whatsapp" href="https://wa.me/5574999899211?text=Ol%C3%A1%2C%20quero%20montar%20minha%20propria%20banca." class="btn-cta">
-        <svg class="wpp-icon" viewBox="0 0 24 24">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.05 20.16C10.64 20.16 9.26 19.78 8.04 19.06L7.76 18.89L4.63 19.71L5.47 16.66L5.28 16.36C4.48 15.09 4.06 13.52 4.06 11.91C4.06 7.37 7.76 3.67 12.05 3.67ZM8.97 7.36C8.82 7.36 8.58 7.42 8.37 7.65C8.16 7.87 7.57 8.43 7.57 9.56C7.57 10.69 8.39 11.78 8.51 11.93C8.63 12.09 10.13 14.39 12.42 15.38C13.06 15.65 13.56 15.82 13.95 15.94C14.6 16.15 15.19 16.12 15.66 16.05C16.18 15.97 17.26 15.39 17.49 14.75C17.72 14.11 17.72 13.56 17.65 13.44C17.58 13.33 17.4 13.26 17.13 13.13C16.86 13 15.53 12.35 15.28 12.26C15.04 12.17 14.86 12.13 14.68 12.4C14.5 12.67 13.99 13.26 13.84 13.44C13.68 13.62 13.53 13.64 13.26 13.51C12.99 13.38 12.12 13.09 11.09 12.17C10.28 11.45 9.74 10.57 9.58 10.3C9.43 10.03 9.56 9.88 9.7 9.75C9.82 9.63 9.97 9.43 10.11 9.27C10.25 9.11 10.3 8.99 10.39 8.81C10.48 8.63 10.43 8.47 10.37 8.35C10.31 8.23 9.77 6.9 9.55 6.36C9.33 5.84 9.12 5.91 8.97 5.91C8.82 5.91 8.64 5.91 8.46 5.91C8.28 5.91 8.04 5.98 7.86 6.18C7.68 6.38 7.17 6.85 7.17 7.82C7.17 8.79 7.89 9.72 8 9.87C8.11 10.01 9.4 11.99 11.37 12.84C11.92 13.08 12.35 13.22 12.68 13.33C13.23 13.51 13.73 13.48 14.13 13.42C14.57 13.35 15.5 12.85 15.69 12.3C15.89 11.75 15.89 11.28 15.83 11.18C15.77 11.08 15.62 11.02 15.39 10.91C15.16 10.8 14.02 10.24 13.81 10.16C13.6 10.08 13.45 10.05 13.3 10.28C13.15 10.51 12.71 11.02 12.58 11.18C12.45 11.33 12.32 11.35 12.09 11.24C11.86 11.13 11.12 10.88 10.24 10.1C9.55 9.48 9.09 8.73 8.95 8.49C8.82 8.26 8.93 8.13 9.05 8.02C9.15 7.92 9.28 7.75 9.4 7.61C9.52 7.47 9.56 7.37 9.64 7.21C9.72 7.06 9.68 6.92 9.62 6.82C9.57 6.72 9.12 5.58 8.97 5.22L8.97 7.36Z" />
-        </svg>
-        <span>Fale com Atendente</span>
-        <svg class="arrow-icon" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </a>
-
-      <div class="manual-note">Clique acima se não redirecionar automaticamente</div>
     </div>
 
   </div>
 
-  <!-- RODAPÉ: (Termos, Direitos, Disclaimer Meta) -->
+  <!-- RODAPÉ (Conformidade com Facebook Ads) -->
   <footer>
     <div class="footer-links">
-      <a href="javascript:void(0)" onclick="openModal('termos')">Termos de Uso</a>
+      <a href="#">Termos de Uso</a>
       <span>•</span>
-      <a href="javascript:void(0)" onclick="openModal('privacidade')">Política de Privacidade</a>
+      <a href="#">Política de Privacidade</a>
     </div>
 
     <div class="footer-copyright">
@@ -400,68 +314,8 @@
     </div>
   </footer>
 
-  <!-- Modal para Termos / Privacidade -->
-  <div id="legal-modal" class="legal-modal" onclick="closeModal()">
-    <div class="legal-modal-content" onclick="event.stopPropagation()">
-      <h3 id="modal-title" style="margin-bottom: 10px; color: #fff;">Aviso Legal</h3>
-      <p id="modal-body">Conteúdo informativo sobre uso e privacidade de dados. Este site respeita todas as diretrizes de navegação segura e conformidade legal.</p>
-      <button class="legal-modal-close" onclick="closeModal()">Fechar</button>
-    </div>
-  </div>
-
   <script>
-    /* ========================================================
-       👉 LINK DO WHATSAPP CONFIGURADO:
-       ======================================================== */
-    const SEU_LINK_DO_WHATSAPP = "https://wa.me/5574999899211?text=Ol%C3%A1%2C%20quero%20montar%20minha%20propria%20banca.";
-
-    const btn = document.getElementById('btn-whatsapp');
-    if (btn) {
-      btn.href = SEU_LINK_DO_WHATSAPP;
-    }
-
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    /* ========================================================
-       ⏱️ REDIRECIONAMENTO AUTOMÁTICO EM 3 SEGUNDOS
-       ======================================================== */
-    let segundosRestantes = 3;
-    const elCountdown = document.getElementById('countdown');
-
-    const timerInterval = setInterval(function() {
-      segundosRestantes--;
-      if (elCountdown) {
-        elCountdown.textContent = Math.max(0, segundosRestantes);
-      }
-      if (segundosRestantes <= 0) {
-        clearInterval(timerInterval);
-        // Redirecionamento automático imediato para o WhatsApp
-        window.location.href = SEU_LINK_DO_WHATSAPP;
-      }
-    }, 1000);
-
-    // Timeout de segurança absoluto para garantir o redirecionamento
-    setTimeout(function() {
-      window.location.href = SEU_LINK_DO_WHATSAPP;
-    }, 3000);
-
-    function openModal(type) {
-      const modal = document.getElementById('legal-modal');
-      const title = document.getElementById('modal-title');
-      const body = document.getElementById('modal-body');
-      if (type === 'termos') {
-        title.textContent = 'Termos de Uso';
-        body.textContent = 'O acesso a este serviço é destinado exclusivamente a maiores de 18 anos. Ao prosseguir, o usuário concorda com o entretenimento responsável e com as normas de atendimento esportivo.';
-      } else {
-        title.textContent = 'Política de Privacidade';
-        body.textContent = 'Garantimos o sigilo e a proteção dos seus dados durante a comunicação. Nenhuma informação pessoal é compartilhada com terceiros.';
-      }
-      modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('legal-modal').style.display = 'none';
-    }
   </script>
 </body>
 </html>
