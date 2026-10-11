@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Jogada de Ouro</title>
+  <meta name="theme-color" content="#030806" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #030806;
+      /* Imagem de futebol vibrante e cinematográfica adaptada perfeitamente para celular e desktop */
+      background-image: 
+        linear-gradient(180deg, rgba(2, 6, 4, 0.65) 0%, rgba(2, 6, 4, 0.18) 32%, rgba(2, 6, 4, 0.42) 65%, rgba(1, 4, 2, 0.95) 100%),
+        url('bg-futebol.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      color: #ffffff;
+      padding: 24px 20px 18px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Bloco Central: Logo + Botão agrupados no centro exato da tela */
+    .center-content {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 440px;
+      gap: 24px;
+      z-index: 10;
+      padding: 10px 0;
+    }
+
+    /* Logo Oficial Jogada de Ouro */
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      user-select: none;
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      object-fit: contain;
+      filter: 
+        drop-shadow(0 14px 28px rgba(0, 0, 0, 0.95))
+        drop-shadow(0 0 24px rgba(245, 158, 11, 0.35));
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo-img:hover {
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 16px 16px 16px;
+        background-position: center top;
+      }
+      .center-content {
+        gap: 20px;
+      }
+      .brand-logo-img {
+        max-width: 250px;
+      }
+      .btn-cta {
+        max-width: 290px;
+        height: 52px;
+        font-size: 14px;
+      }
+      .metrics-counter {
+        font-size: 10px;
+        padding: 4px 12px;
+        gap: 8px;
+      }
+    }
+
+    /* Botão idêntico ao modelo da referência (Verde esmeralda, borda fina, glow suave) */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+      height: 54px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #02a366 0%, #008753 100%);
+      border: 1.5px solid #1dd588;
+      box-shadow: 
+        0 0 28px rgba(2, 163, 102, 0.45),
+        0 8px 20px rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-cta:hover {
+      background: linear-gradient(180deg, #05b874 0%, #00995e 100%);
+      box-shadow: 
+        0 0 38px rgba(2, 163, 102, 0.7),
+        0 10px 25px rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-cta:active {
+      transform: scale(0.97);
+    }
+
+    .wpp-icon {
+      width: 22px;
+      height: 22px;
+      fill: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .arrow-icon {
+      width: 18px;
+      height: 18px;
+      stroke: #ffffff;
+      stroke-width: 2.6;
+      fill: none;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-cta:hover .arrow-icon {
+      transform: translateX(3px);
+    }
+
+    /* Rodapé idêntico ao modelo da referência (Centralizado, limpo, discreto) */
+    footer {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #8b9bb4;
+      line-height: 1.5;
+      padding-top: 16px;
+      z-index: 10;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .footer-links a {
+      color: #8b9bb4;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-copyright {
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .footer-disclaimer {
+      font-size: 9px;
+      color: #475569;
+      max-width: 420px;
+    }
+
+    /* Contador de Visitas e Cliques */
+    .metrics-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: #94a3b8;
+      background: rgba(3, 10, 6, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      backdrop-filter: blur(8px);
+      margin: 4px 0;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      user-select: none;
+    }
+
+    .metric-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .metric-value {
+      color: #22c55e;
+      font-weight: 800;
+    }
+
+    .metric-sep {
+      color: #475569;
+    }
+
+    /* Modal simples para Termos / Privacidade caso o usuário clique */
+    .legal-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .legal-modal-content {
+      background: #0b130e;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 460px;
+      color: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .legal-modal-close {
+      margin-top: 16px;
+      padding: 8px 16px;
+      background: #02a366;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTEÚDO CENTRAL: Logo Oficial + Botão -->
+  <div class="center-content">
+    
+    <!-- Logo Oficial Jogada de Ouro -->
+    <div class="brand-logo-wrap">
+      <img src="logo.png" alt="Jogada de Ouro" class="brand-logo-img" />
+    </div>
+
+    <!-- Botão Direto: Fale com Atendente -->
+    <a id="btn-whatsapp" href="https://wa.me/5574999899211?text=Ol%C3%A1%2C%20quero%20montar%20minha%20propria%20banca." class="btn-cta" target="_blank" rel="noopener noreferrer">
+      <svg class="wpp-icon" viewBox="0 0 24 24">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.05 20.16C10.64 20.16 9.26 19.78 8.04 19.06L7.76 18.89L4.63 19.71L5.47 16.66L5.28 16.36C4.48 15.09 4.06 13.52 4.06 11.91C4.06 7.37 7.76 3.67 12.05 3.67ZM8.97 7.36C8.82 7.36 8.58 7.42 8.37 7.65C8.16 7.87 7.57 8.43 7.57 9.56C7.57 10.69 8.39 11.78 8.51 11.93C8.63 12.09 10.13 14.39 12.42 15.38C13.06 15.65 13.56 15.82 13.95 15.94C14.6 16.15 15.19 16.12 15.66 16.05C16.18 15.97 17.26 15.39 17.49 14.75C17.72 14.11 17.72 13.56 17.65 13.44C17.58 13.33 17.4 13.26 17.13 13.13C16.86 13 15.53 12.35 15.28 12.26C15.04 12.17 14.86 12.13 14.68 12.4C14.5 12.67 13.99 13.26 13.84 13.44C13.68 13.62 13.53 13.64 13.26 13.51C12.99 13.38 12.12 13.09 11.09 12.17C10.28 11.45 9.74 10.57 9.58 10.3C9.43 10.03 9.56 9.88 9.7 9.75C9.82 9.63 9.97 9.43 10.11 9.27C10.25 9.11 10.3 8.99 10.39 8.81C10.48 8.63 10.43 8.47 10.37 8.35C10.31 8.23 9.77 6.9 9.55 6.36C9.33 5.84 9.12 5.91 8.97 5.91C8.82 5.91 8.64 5.91 8.46 5.91C8.28 5.91 8.04 5.98 7.86 6.18C7.68 6.38 7.17 6.85 7.17 7.82C7.17 8.79 7.89 9.72 8 9.87C8.11 10.01 9.4 11.99 11.37 12.84C11.92 13.08 12.35 13.22 12.68 13.33C13.23 13.51 13.73 13.48 14.13 13.42C14.57 13.35 15.5 12.85 15.69 12.3C15.89 11.75 15.89 11.28 15.83 11.18C15.77 11.08 15.62 11.02 15.39 10.91C15.16 10.8 14.02 10.24 13.81 10.16C13.6 10.08 13.45 10.05 13.3 10.28C13.15 10.51 12.71 11.02 12.58 11.18C12.45 11.33 12.32 11.35 12.09 11.24C11.86 11.13 11.12 10.88 10.24 10.1C9.55 9.48 9.09 8.73 8.95 8.49C8.82 8.26 8.93 8.13 9.05 8.02C9.15 7.92 9.28 7.75 9.4 7.61C9.52 7.47 9.56 7.37 9.64 7.21C9.72 7.06 9.68 6.92 9.62 6.82C9.57 6.72 9.12 5.58 8.97 5.22L8.97 7.36Z" />
+      </svg>
+      <span>Fale com Atendente</span>
+      <svg class="arrow-icon" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+
+  </div>
+
+  <!-- RODAPÉ: Igual à referência (Termos, Direitos, Disclaimer Meta) -->
+  <footer>
+    <div class="footer-links">
+      <a href="javascript:void(0)" onclick="openModal('termos')">Termos de Uso</a>
+      <span>•</span>
+      <a href="javascript:void(0)" onclick="openModal('privacidade')">Política de Privacidade</a>
+    </div>
+
+    <!-- Contador de Visitas Únicas e Cliques no Botão -->
+    <div class="metrics-counter">
+      <span class="metric-item">👁️ Visitas únicas: <span id="val-visitas" class="metric-value">...</span></span>
+      <span class="metric-sep">•</span>
+      <span class="metric-item">📲 Cliques no botão: <span id="val-cliques" class="metric-value">...</span></span>
+    </div>
+
+    <div class="footer-copyright">
+      © <span id="year">2026</span> • Todos os direitos reservados.
+    </div>
+
+    <div class="footer-disclaimer">
+      Este site não é afiliado ao Facebook ou a qualquer entidade da Meta Platforms, Inc.
+    </div>
+  </footer>
+
+  <!-- Modal para Termos / Privacidade -->
+  <div id="legal-modal" class="legal-modal" onclick="closeModal()">
+    <div class="legal-modal-content" onclick="event.stopPropagation()">
+      <h3 id="modal-title" style="margin-bottom: 10px; color: #fff;">Aviso Legal</h3>
+      <p id="modal-body">Conteúdo informativo sobre uso e privacidade de dados. Este site respeita todas as diretrizes de navegação segura e conformidade legal.</p>
+      <button class="legal-modal-close" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    /* ========================================================
+       👉 LINK DO WHATSAPP CONFIGURADO:
+       ======================================================== */
+    const SEU_LINK_DO_WHATSAPP = "https://wa.me/5574999899211?text=Ol%C3%A1%2C%20quero%20montar%20minha%20propria%20banca.";
+
+    const btn = document.getElementById('btn-whatsapp');
+    if (btn) {
+      btn.href = SEU_LINK_DO_WHATSAPP;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ========================================================
+       📊 CONTADOR DE VISITAS ÚNICAS (POR IP) E CLIQUES NO BOTÃO
+       ======================================================== */
+    const NAMESPACE_KEY = "jogadadeouro_presell_prod";
+    const KEY_VISITAS = NAMESPACE_KEY + "_visitas";
+    const KEY_CLIQUES = NAMESPACE_KEY + "_cliques";
+
+    const elVisitas = document.getElementById('val-visitas');
+    const elCliques = document.getElementById('val-cliques');
+
+    // 1. Carrega total de cliques atual
+    fetch('https://countapi.mileshilliard.com/api/v1/get/' + KEY_CLIQUES)
+      .then(res => res.json())
+      .then(data => {
+        if (elCliques && typeof data.value === 'number') {
+          elCliques.textContent = data.value;
+        } else if (elCliques) {
+          elCliques.textContent = '0';
+        }
+      })
+      .catch(() => {
+        if (elCliques) elCliques.textContent = '0';
+      });
+
+    // 2. Contabiliza visita única (verifica IP e localStorage para não duplicar visitas repetidas)
+    async function contabilizarVisitaUnica() {
+      try {
+        let visitorIp = '';
+        try {
+          const ipRes = await fetch('https://api.ipify.org?format=json', { signal: AbortSignal.timeout(2500) });
+          const ipJson = await ipRes.json();
+          visitorIp = ipJson.ip || '';
+        } catch (_) {}
+
+        const storageToken = 'jogada_view_' + (visitorIp ? visitorIp.replace(/[^a-zA-Z0-9]/g, '_') : 'client');
+        const jaVisitou = localStorage.getItem(storageToken);
+
+        if (!jaVisitou) {
+          // Novo IP / Visitante único: incrementa o contador
+          localStorage.setItem(storageToken, Date.now());
+          const hitRes = await fetch('https://countapi.mileshilliard.com/api/v1/hit/' + KEY_VISITAS);
+          const hitData = await hitRes.json();
+          if (elVisitas && typeof hitData.value === 'number') {
+            elVisitas.textContent = hitData.value;
+          }
+        } else {
+          // IP já registrado: apenas lê o número atual sem inflar
+          const getRes = await fetch('https://countapi.mileshilliard.com/api/v1/get/' + KEY_VISITAS);
+          const getData = await getRes.json();
+          if (elVisitas && typeof getData.value === 'number') {
+            elVisitas.textContent = getData.value;
+          }
+        }
+      } catch (err) {
+        if (elVisitas) elVisitas.textContent = '1';
+      }
+    }
+    contabilizarVisitaUnica();
+
+    // 3. Contabiliza clique no botão do WhatsApp
+    if (btn) {
+      btn.addEventListener('click', function() {
+        // Incrementa instantaneamente no visual
+        if (elCliques) {
+          const atual = parseInt(elCliques.textContent) || 0;
+          elCliques.textContent = atual + 1;
+        }
+
+        // Envia incremento para a API de contagem
+        try {
+          fetch('https://countapi.mileshilliard.com/api/v1/hit/' + KEY_CLIQUES, { keepalive: true });
+        } catch (_) {}
+      });
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById('legal-modal');
+      const title = document.getElementById('modal-title');
+      const body = document.getElementById('modal-body');
+      if (type === 'termos') {
+        title.textContent = 'Termos de Uso';
+        body.textContent = 'O acesso a este serviço é destinado exclusivamente a maiores de 18 anos. Ao prosseguir, o usuário concorda com o entretenimento responsável e com as normas de atendimento esportivo.';
+      } else {
+        title.textContent = 'Política de Privacidade';
+        body.textContent = 'Garantimos o sigilo e a proteção dos seus dados durante a comunicação. Nenhuma informação pessoal é compartilhada com terceiros.';
+      }
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('legal-modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
