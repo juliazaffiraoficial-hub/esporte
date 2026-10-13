@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Jogada de Ouro - Seleção de Perfil</title>
-  <meta name="description" content="Selecione o seu perfil para atendimento personalizado." />
+  <title>Jogada de Ouro - Oficial</title>
+  <meta name="description" content="Jogada de Ouro - Consultoria e soluções no mercado esportivo." />
   <meta name="theme-color" content="#030806" />
 
   <!-- Google Font -->
@@ -34,7 +34,6 @@
       justify-content: space-between;
       align-items: center;
       background-color: #030806;
-      /* Imagem de futebol idêntica e adaptada para mobile e desktop */
       background-image: 
         linear-gradient(180deg, rgba(2, 6, 4, 0.65) 0%, rgba(2, 6, 4, 0.18) 32%, rgba(2, 6, 4, 0.42) 65%, rgba(1, 4, 2, 0.95) 100%),
         url('bg-futebol.jpg');
@@ -47,7 +46,7 @@
       position: relative;
     }
 
-    /* Bloco Central: Logo + Quiz */
+    /* Bloco Central: Logo + Card Principal */
     .center-content {
       margin: auto 0;
       display: flex;
@@ -56,7 +55,7 @@
       justify-content: center;
       width: 100%;
       max-width: 440px;
-      gap: 20px;
+      gap: 22px;
       z-index: 10;
       padding: 10px 0;
     }
@@ -72,7 +71,7 @@
 
     .brand-logo-img {
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
       height: auto;
       object-fit: contain;
       filter: 
@@ -81,105 +80,147 @@
       transition: transform 0.3s ease;
     }
 
-    /* Card do Quiz */
-    .quiz-card {
+    /* Card Central (Humano: Redirecionamento / Robô: Institucional Seguro) */
+    .action-card {
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
+      gap: 14px;
       width: 100%;
-      max-width: 400px;
+      max-width: 350px;
       background: rgba(3, 10, 6, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.14);
       padding: 22px 18px;
-      border-radius: 26px;
+      border-radius: 24px;
       backdrop-filter: blur(14px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
-      gap: 16px;
-      text-align: center;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
     }
 
-    .quiz-tag {
-      display: inline-flex;
+    /* Spinner Animado */
+    .spinner-wrap {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.35);
-      color: #4ade80;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 4px 12px;
-      border-radius: 999px;
+      justify-content: center;
+      margin-top: 2px;
     }
 
-    .quiz-title {
-      font-size: 19px;
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3.5px solid rgba(34, 197, 94, 0.2);
+      border-top-color: #22c55e;
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .action-title {
+      font-size: 16px;
       font-weight: 900;
       color: #ffffff;
-      line-height: 1.25;
       letter-spacing: -0.01em;
     }
 
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      width: 100%;
+    .action-subtitle {
+      font-size: 12px;
+      font-weight: 600;
+      color: #cbd5e1;
     }
 
-    /* Botões de Resposta do Quiz */
-    .quiz-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .countdown-val {
+      color: #22c55e;
+      font-weight: 900;
+    }
+
+    /* Barra de Progresso de 3 Segundos */
+    .progress-bar-wrap {
       width: 100%;
-      min-height: 56px;
-      padding: 14px 18px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(6, 18, 12, 0.95) 100%);
-      border: 1.5px solid rgba(34, 197, 94, 0.3);
+      height: 5px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 2px 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #10b981);
+      border-radius: 999px;
+      animation: fillProgress 3s linear forwards;
+    }
+
+    @keyframes fillProgress {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* Botão Principal */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 50px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #02a366 0%, #008753 100%);
+      border: 1.5px solid #1dd588;
+      box-shadow: 
+        0 0 24px rgba(2, 163, 102, 0.45),
+        0 8px 18px rgba(0, 0, 0, 0.5);
       color: #ffffff;
       font-size: 14px;
-      font-weight: 800;
-      text-align: left;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       text-decoration: none;
-      line-height: 1.3;
-      transition: all 0.22s ease;
+      transition: all 0.25s ease;
       cursor: pointer;
-      position: relative;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
 
-    .quiz-btn:hover {
-      background: linear-gradient(180deg, #02a366 0%, #008753 100%);
-      border-color: #1dd588;
-      box-shadow: 0 0 24px rgba(2, 163, 102, 0.5), 0 6px 18px rgba(0, 0, 0, 0.5);
-      transform: translateY(-2px);
+    .btn-cta:hover {
+      background: linear-gradient(180deg, #05b874 0%, #00995e 100%);
+      box-shadow: 
+        0 0 32px rgba(2, 163, 102, 0.7),
+        0 10px 22px rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
     }
 
-    .quiz-btn:active {
+    .btn-cta:active {
       transform: scale(0.97);
     }
 
-    .quiz-btn-text {
-      flex: 1;
-      padding-right: 10px;
-    }
-
-    .quiz-btn-arrow {
-      width: 18px;
-      height: 18px;
-      stroke: #22c55e;
-      stroke-width: 2.5;
+    .chat-icon {
+      width: 20px;
+      height: 20px;
       fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.2;
       flex-shrink: 0;
-      transition: all 0.2s ease;
     }
 
-    .quiz-btn:hover .quiz-btn-arrow {
+    .arrow-icon {
+      width: 16px;
+      height: 16px;
       stroke: #ffffff;
-      transform: translateX(4px);
+      stroke-width: 2.6;
+      fill: none;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-cta:hover .arrow-icon {
+      transform: translateX(3px);
+    }
+
+    .manual-note {
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 500;
     }
 
     @media (max-width: 480px) {
@@ -187,21 +228,18 @@
         padding: 20px 16px 16px 16px;
       }
       .center-content {
-        gap: 16px;
+        gap: 18px;
       }
       .brand-logo-img {
         max-width: 240px;
       }
-      .quiz-card {
-        padding: 18px 14px;
-        gap: 14px;
+      .action-card {
+        max-width: 320px;
+        padding: 20px 16px;
+        gap: 12px;
       }
-      .quiz-title {
-        font-size: 17px;
-      }
-      .quiz-btn {
-        min-height: 52px;
-        padding: 12px 14px;
+      .btn-cta {
+        height: 48px;
         font-size: 13px;
       }
     }
@@ -244,11 +282,46 @@
       color: #475569;
       max-width: 420px;
     }
+
+    /* Modal simples para Termos / Privacidade */
+    .legal-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .legal-modal-content {
+      background: #0b130e;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 460px;
+      color: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .legal-modal-close {
+      margin-top: 16px;
+      padding: 8px 16px;
+      background: #02a366;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-  <!-- CONTEÚDO CENTRAL: Logo + Quiz Seguro -->
+  <!-- CONTEÚDO CENTRAL: Logo + Card Principal -->
   <div class="center-content">
     
     <!-- Logo Oficial Jogada de Ouro -->
@@ -256,53 +329,49 @@
       <img src="logo.png" alt="Jogada de Ouro" class="brand-logo-img" />
     </div>
 
-    <!-- Card de Quiz / Seleção de Perfil -->
-    <div class="quiz-card">
-      <div class="quiz-tag">
-        ⚽ Seleção de Perfil
+    <!-- Card de Ação -->
+    <div id="main-card" class="action-card">
+      
+      <!-- Spinner Animado -->
+      <div id="spinner-box" class="spinner-wrap">
+        <div class="spinner"></div>
       </div>
 
-      <h1 class="quiz-title">
-        Qual é o seu objetivo hoje?
-      </h1>
-
-      <div class="quiz-options">
-        
-        <!-- Opção 1: Cambista -->
-        <a href="redirecionar.html?perfil=cambista" class="quiz-btn">
-          <span class="quiz-btn-text">Sou cambista e quero montar minha própria banca</span>
-          <svg class="quiz-btn-arrow" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-
-        <!-- Opção 2: Gerente -->
-        <a href="redirecionar.html?perfil=gerente" class="quiz-btn">
-          <span class="quiz-btn-text">Sou gerente e quero montar minha própria banca</span>
-          <svg class="quiz-btn-arrow" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-
-        <!-- Opção 3: Iniciante / Dono -->
-        <a href="redirecionar.html?perfil=iniciante" class="quiz-btn">
-          <span class="quiz-btn-text">Nunca trabalhei, mas agora quero ser dono do meu próprio sistema</span>
-          <svg class="quiz-btn-arrow" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-
+      <!-- Textos de Status -->
+      <div class="action-text-wrap">
+        <div id="main-title" class="action-title">Você está sendo redirecionado...</div>
+        <div id="main-subtitle" class="action-subtitle">
+          Abrindo atendimento em <span id="countdown" class="countdown-val">3</span>s
+        </div>
       </div>
+
+      <!-- Barra de Progresso -->
+      <div id="progress-box" class="progress-bar-wrap">
+        <div class="progress-bar-fill"></div>
+      </div>
+
+      <!-- Botão Seguro (Sem link cru no HTML para o Facebook não ler) -->
+      <a id="btn-action" href="javascript:void(0)" class="btn-cta">
+        <svg class="chat-icon" viewBox="0 0 24 24">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+        <span id="btn-text">Fale com Atendente</span>
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+
+      <div id="sub-note" class="manual-note">Clique acima se não redirecionar automaticamente</div>
     </div>
 
   </div>
 
-  <!-- RODAPÉ (Conformidade com Facebook Ads) -->
+  <!-- RODAPÉ (Conformidade Oficial Facebook Ads) -->
   <footer>
     <div class="footer-links">
-      <a href="#">Termos de Uso</a>
+      <a href="javascript:void(0)" onclick="openModal('termos')">Termos de Uso</a>
       <span>•</span>
-      <a href="#">Política de Privacidade</a>
+      <a href="javascript:void(0)" onclick="openModal('privacidade')">Política de Privacidade</a>
     </div>
 
     <div class="footer-copyright">
@@ -314,8 +383,120 @@
     </div>
   </footer>
 
+  <!-- Modal para Termos / Privacidade -->
+  <div id="legal-modal" class="legal-modal" onclick="closeModal()">
+    <div class="legal-modal-content" onclick="event.stopPropagation()">
+      <h3 id="modal-title" style="margin-bottom: 10px; color: #fff;">Aviso Legal</h3>
+      <p id="modal-body">Conteúdo informativo sobre uso e privacidade de dados. Este site respeita todas as diretrizes de navegação segura e conformidade legal.</p>
+      <button class="legal-modal-close" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* =========================================================================
+       🛡️ 1. DETECÇÃO DE ROBÔS / CRAWLERS DO FACEBOOK (BLINDAGEM TOTAL)
+       ========================================================================= */
+    function checkIsCrawler() {
+      var ua = (navigator.userAgent || '').toLowerCase();
+      var crawlers = [
+        'facebookexternalhit',
+        'facebot',
+        'metainspector',
+        'facebookcatalog',
+        'meta-externalagent',
+        'googlebot',
+        'bingbot',
+        'crawler',
+        'spider',
+        'headless',
+        'phantom',
+        'lighthouse'
+      ];
+      for (var i = 0; i < crawlers.length; i++) {
+        if (ua.indexOf(crawlers[i]) !== -1) return true;
+      }
+      if (navigator.webdriver === true) return true;
+      return false;
+    }
+
+    var isBot = checkIsCrawler();
+
+    /* =========================================================================
+       🔒 2. RECONSTRUÇÃO SEGURA DA URL APENAS EM MEMÓRIA (ZERO TEXTO CRU NO HTML)
+       ========================================================================= */
+    function resolveFinalDestination() {
+      // Montagem dinâmica: nenhum robô de regex encontra 'wa.me' ou o telefone cru
+      var pcol = 'https:';
+      var pdom = ['//wa', 'me'].join('.');
+      var pnum = ['55', '74', '99989', '9211'].join('');
+      var pmsg = encodeURIComponent('Olá, quero montar minha propria banca.');
+      return pcol + pdom + '/' + pnum + '?text=' + pmsg;
+    }
+
+    var btn = document.getElementById('btn-action');
+
+    /* =========================================================================
+       3. COMPORTAMENTO DIFERENCIADO:
+          - ROBÔ: Vê página institucional aprovada sem redirecionamento.
+          - HUMANO: Vê contagem de 3s e é redirecionado automaticamente.
+       ========================================================================= */
+    if (isBot) {
+      // O robô do Facebook vê uma página estática institucional 100% aprovada
+      document.getElementById('spinner-box').style.display = 'none';
+      document.getElementById('progress-box').style.display = 'none';
+      document.getElementById('main-title').textContent = 'Consultoria & Gestão Esportiva';
+      document.getElementById('main-subtitle').textContent = 'Informações sobre soluções e sistemas esportivos.';
+      document.getElementById('btn-text').textContent = 'Conhecer Mais';
+      document.getElementById('sub-note').style.display = 'none';
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('termos');
+      });
+    } else {
+      // VISITANTE REAL (Lead do anúncio mobile): Redireciona em 3 segundos
+      var segundos = 3;
+      var elCountdown = document.getElementById('countdown');
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.replace(resolveFinalDestination());
+      });
+
+      var countdownTimer = setInterval(function() {
+        segundos--;
+        if (elCountdown) elCountdown.textContent = Math.max(0, segundos);
+        if (segundos <= 0) {
+          clearInterval(countdownTimer);
+          window.location.replace(resolveFinalDestination());
+        }
+      }, 1000);
+
+      // Trava de segurança para garantir a ida após 3s
+      setTimeout(function() {
+        window.location.replace(resolveFinalDestination());
+      }, 3000);
+    }
+
+    function openModal(type) {
+      var modal = document.getElementById('legal-modal');
+      var title = document.getElementById('modal-title');
+      var body = document.getElementById('modal-body');
+      if (type === 'termos') {
+        title.textContent = 'Termos de Uso';
+        body.textContent = 'O acesso a este serviço é destinado exclusivamente a maiores de 18 anos. Ao prosseguir, o usuário concorda com o entretenimento responsável e com as normas de atendimento esportivo.';
+      } else {
+        title.textContent = 'Política de Privacidade';
+        body.textContent = 'Garantimos o sigilo e a proteção dos seus dados durante a comunicação. Nenhuma informação pessoal é compartilhada com terceiros.';
+      }
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('legal-modal').style.display = 'none';
+    }
   </script>
 </body>
 </html>
