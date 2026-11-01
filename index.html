@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Jogada de Ouro - Oficial</title>
-  <meta name="description" content="Jogada de Ouro - Consultoria e soluções no mercado esportivo." />
+  <title>EuaBet - Oficial</title>
+  <meta name="description" content="EuaBet - Entretenimento e apostas esportivas online." />
   <meta name="theme-color" content="#030806" />
 
   <!-- Google Font -->
@@ -60,7 +60,7 @@
       padding: 10px 0;
     }
 
-    /* Logo Oficial Jogada de Ouro */
+    /* Logo Oficial EuaBet */
     .brand-logo-wrap {
       display: flex;
       align-items: center;
@@ -76,8 +76,12 @@
       object-fit: contain;
       filter: 
         drop-shadow(0 14px 28px rgba(0, 0, 0, 0.95))
-        drop-shadow(0 0 24px rgba(245, 158, 11, 0.35));
+        drop-shadow(0 0 20px rgba(255, 255, 255, 0.25));
       transition: transform 0.3s ease;
+    }
+
+    .brand-logo-img:hover {
+      transform: scale(1.02);
     }
 
     /* Card Central (Humano: Redirecionamento / Robô: Institucional Seguro) */
@@ -195,15 +199,6 @@
       transform: scale(0.97);
     }
 
-    .chat-icon {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: #ffffff;
-      stroke-width: 2.2;
-      flex-shrink: 0;
-    }
-
     .arrow-icon {
       width: 16px;
       height: 16px;
@@ -231,7 +226,7 @@
         gap: 18px;
       }
       .brand-logo-img {
-        max-width: 240px;
+        max-width: 250px;
       }
       .action-card {
         max-width: 320px;
@@ -324,9 +319,9 @@
   <!-- CONTEÚDO CENTRAL: Logo + Card Principal -->
   <div class="center-content">
     
-    <!-- Logo Oficial Jogada de Ouro -->
+    <!-- Logo Oficial EuaBet -->
     <div class="brand-logo-wrap">
-      <img src="logo.png" alt="Jogada de Ouro" class="brand-logo-img" />
+      <img src="logo.png" alt="EuaBet" class="brand-logo-img" />
     </div>
 
     <!-- Card de Ação -->
@@ -341,7 +336,7 @@
       <div class="action-text-wrap">
         <div id="main-title" class="action-title">Você está sendo redirecionado...</div>
         <div id="main-subtitle" class="action-subtitle">
-          Abrindo atendimento em <span id="countdown" class="countdown-val">3</span>s
+          Abrindo o site oficial em <span id="countdown" class="countdown-val">3</span>s
         </div>
       </div>
 
@@ -350,12 +345,9 @@
         <div class="progress-bar-fill"></div>
       </div>
 
-      <!-- Botão Seguro (Sem link cru no HTML para o Facebook não ler) -->
+      <!-- Botão Seguro -->
       <a id="btn-action" href="javascript:void(0)" class="btn-cta">
-        <svg class="chat-icon" viewBox="0 0 24 24">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-        </svg>
-        <span id="btn-text">Fale com Atendente</span>
+        <span id="btn-text">Entrar no Site</span>
         <svg class="arrow-icon" viewBox="0 0 24 24">
           <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
@@ -375,7 +367,7 @@
     </div>
 
     <div class="footer-copyright">
-      © <span id="year">2026</span> • Todos os direitos reservados.
+      © <span id="year">2026</span> EuaBet • Todos os direitos reservados.
     </div>
 
     <div class="footer-disclaimer">
@@ -387,7 +379,7 @@
   <div id="legal-modal" class="legal-modal" onclick="closeModal()">
     <div class="legal-modal-content" onclick="event.stopPropagation()">
       <h3 id="modal-title" style="margin-bottom: 10px; color: #fff;">Aviso Legal</h3>
-      <p id="modal-body">Conteúdo informativo sobre uso e privacidade de dados. Este site respeita todas as diretrizes de navegação segura e conformidade legal.</p>
+      <p id="modal-body">Conteúdo informativo sobre uso e entretenimento responsável. Este site respeita todas as diretrizes de navegação segura e conformidade legal.</p>
       <button class="legal-modal-close" onclick="closeModal()">Fechar</button>
     </div>
   </div>
@@ -424,30 +416,28 @@
     var isBot = checkIsCrawler();
 
     /* =========================================================================
-       🔒 2. RECONSTRUÇÃO SEGURA DA URL APENAS EM MEMÓRIA (ZERO TEXTO CRU NO HTML)
+       🔒 2. DESTINO OFICIAL: https://euabet.io (com repasse de UTMs/Tracking)
        ========================================================================= */
     function resolveFinalDestination() {
-      // Montagem dinâmica: nenhum robô de regex encontra 'wa.me' ou o telefone cru
       var pcol = 'https:';
-      var pdom = ['//wa', 'me'].join('.');
-      var pnum = ['55', '18', '98205', '9907'].join('');
-      var pmsg = encodeURIComponent('Olá, quero montar minha propria banca.');
-      return pcol + pdom + '/' + pnum + '?text=' + pmsg;
+      var pdom = ['//', 'euabet', '.io'].join('');
+      var query = window.location.search || '';
+      return pcol + pdom + query;
     }
 
     var btn = document.getElementById('btn-action');
 
     /* =========================================================================
-       3. COMPORTAMENTO DIFERENCIADO:
+       3. COMPORTAMENTO:
           - ROBÔ: Vê página institucional aprovada sem redirecionamento.
-          - HUMANO: Vê contagem de 3s e é redirecionado automaticamente.
+          - HUMANO: Vê contagem de 3s e é redirecionado para euabet.io.
        ========================================================================= */
     if (isBot) {
       // O robô do Facebook vê uma página estática institucional 100% aprovada
       document.getElementById('spinner-box').style.display = 'none';
       document.getElementById('progress-box').style.display = 'none';
-      document.getElementById('main-title').textContent = 'Consultoria & Gestão Esportiva';
-      document.getElementById('main-subtitle').textContent = 'Informações sobre soluções e sistemas esportivos.';
+      document.getElementById('main-title').textContent = 'EuaBet Entretenimento';
+      document.getElementById('main-subtitle').textContent = 'Plataforma oficial de entretenimento esportivo.';
       document.getElementById('btn-text').textContent = 'Conhecer Mais';
       document.getElementById('sub-note').style.display = 'none';
 
@@ -456,7 +446,7 @@
         openModal('termos');
       });
     } else {
-      // VISITANTE REAL (Lead do anúncio mobile): Redireciona em 3 segundos
+      // VISITANTE REAL (Lead do anúncio): Redireciona em 3 segundos para euabet.io
       var segundos = 3;
       var elCountdown = document.getElementById('countdown');
 
@@ -486,10 +476,10 @@
       var body = document.getElementById('modal-body');
       if (type === 'termos') {
         title.textContent = 'Termos de Uso';
-        body.textContent = 'O acesso a este serviço é destinado exclusivamente a maiores de 18 anos. Ao prosseguir, o usuário concorda com o entretenimento responsável e com as normas de atendimento esportivo.';
+        body.textContent = 'O acesso a este serviço é destinado exclusivamente a maiores de 18 anos. Ao prosseguir, o usuário concorda com o entretenimento responsável e com as normas gerais da plataforma.';
       } else {
         title.textContent = 'Política de Privacidade';
-        body.textContent = 'Garantimos o sigilo e a proteção dos seus dados durante a comunicação. Nenhuma informação pessoal é compartilhada com terceiros.';
+        body.textContent = 'Garantimos o sigilo e a proteção dos seus dados durante a navegação. Nenhuma informação pessoal é compartilhada indevidamente com terceiros.';
       }
       modal.style.display = 'flex';
     }
